@@ -33,7 +33,23 @@ We've included the training and testing datasets in the repository, pre-processe
 ## Using this model to predict potential virulence factors
 
 ### Feature Extraction with ProtT5
-To facilitate the use of our virulence factor prediction model, we have included a feature extraction script in the repository. The get_embeddings.py script utilizes the ProtT5 model to extract features from protein sequences, which are essential for our prediction tool.
+We understand the importance of an intuitive workflow, especially when dealing with complex models like ProtT5. To this end, we've included a user-friendly Jupyter Notebook in our repository, get_embeddings.ipynb, which guides you through the process of extracting features from protein sequences using the ProtT5 model. These features are crucial for the operation of our virulence factor prediction tool.
+### Getting Started with get_embeddings.ipynb
+1. Access the Notebook: Ensure you have Jupyter Notebook installed on your system. You can install it via pip if you haven't already:
+``` bash
+pip install notebook
+```
+2. Launch the Notebook: Navigate to the directory containing get_embeddings.ipynb and start Jupyter Notebook:
+```
+jupyter notebook
+```
+3. Open get_embeddings.ipynb: In the Jupyter interface, locate and open the get_embeddings.ipynb notebook.
+
+4. Follow the Instructions: The notebook contains step-by-step instructions and code cells that will guide you through the feature extraction process. Simply execute each cell in sequence to generate embeddings for your protein sequences.
+
+5. Save the Embeddings: Once the embeddings are generated, you can save them as a .h5 file using the provided code in the notebook.
+### GPU Requirement
+Please note that the feature extraction process with ProtT5 requires a GPU to ensure efficient and timely execution. If you do not have a GPU available, you may experience slow performance or be unable to complete the process.
 
 ## Security Note
 The entire process of feature extraction and model prediction is designed to be performed locally on your device. This ensures that your data remains private and there is no risk of data leakage.
