@@ -3,6 +3,7 @@ import torch
 import h5py
 import gradio as gr
 import plotly.express as px
+
 class Attention(nn.Module):
     def __init__(self, hidden_size):
         super(Attention, self).__init__()
@@ -72,10 +73,9 @@ class DualModel(nn.Module):
         out_lstm = self.lstm(x)
         out = self.weight * out_cnn + (1 - self.weight) * out_lstm
         return out
-#model = DualModel(1024,326,178,3,2,0.21584329362195895,0.2929261306999448)
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-model = torch.load('./best_model.pth',map_location=device)
+model = torch.load('D:\\Dataset_prect\\VF_data\\github\\best_model.pth')
 model.eval()
 model.to(device)
 
@@ -104,7 +104,7 @@ def predict_vf(file_obj):
     with torch.no_grad():
         for input_tensor in input_tensors:
             output = model(input_tensor)
-            probability = output[0][1].item()  # 假设输出是一个概率值
+            probability = torch.sigmoid(output)[0][1].item()  # 应用 sigmoid 函数并获取正类的概率
             probabilities.append(probability)
 
     # 统计正负样本数量和比例
@@ -124,7 +124,7 @@ def predict_vf(file_obj):
 # 创建Gradio界面
 iface = gr.Interface(
     fn=predict_vf,  # 你的模型函数
-    inputs=gr.inputs.File(label="Upload .h5 file containing the embeddings"),  # 输入组件类型
+    inputs=gr.components.File(label="Upload .h5 file containing the embeddings"),  # 输入组件类型
     outputs=[gr.components.Textbox(label="Predicted Probabilities"), gr.components.Plot(label="Pie Chart")],  # 输出组件类型
     title="VF Prediction Model",  # 页面标题
     description="Upload an .h5 file containing the embeddings to get the probabilities of them being VF (Virulence Factor) and a pie chart showing the distribution of positive and negative predictions."
@@ -132,4 +132,4 @@ iface = gr.Interface(
 )
 
 # 启动界面
-iface.launch(share=False)
+iface.launch(share=False, inbrowser=True)
