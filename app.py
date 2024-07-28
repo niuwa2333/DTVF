@@ -73,7 +73,7 @@ class DualModel(nn.Module):
         out = self.weight * out_cnn + (1 - self.weight) * out_lstm
         return out
 #model = DualModel(1024,326,178,3,2,0.21584329362195895,0.2929261306999448)
-model = torch.load('D:\Dataset_prect\VF_data\\best_model.pth')
+model = torch.load('./best_model.pth')
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 model.eval()
 model.to(device)
