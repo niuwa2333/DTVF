@@ -30,7 +30,18 @@ python run.py
 ## Data
 We've included the training and testing datasets in the repository, pre-processed as .h5 format embeddings, to facilitate easy access and usage.
 
-## acknowledgement
+## Using this model to predict potential virulence factors
+
+### Feature Extraction with ProtT5
+To facilitate the use of our virulence factor prediction model, we have included a feature extraction script in the repository. The get_embeddings.py script utilizes the ProtT5 model to extract features from protein sequences, which are essential for our prediction tool.
+
+## Security Note
+The entire process of feature extraction and model prediction is designed to be performed locally on your device. This ensures that your data remains private and there is no risk of data leakage.
+
+By following these steps, you can leverage the power of the ProtT5 model to generate embeddings for your protein sequences and utilize them with our virulence factor prediction tool.
+## Acknowledgement
 We would like to express our gratitude to the following projects and their contributors:
 [ProtTrans](https://github.com/agemagician/ProtTrans)
+
 [Gradio](https://github.com/gradio-app/gradio)
+
