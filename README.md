@@ -14,7 +14,7 @@ To get started with our virulence factor prediction tool, you'll need a PC equip
 
 ### Clone the Repository:
 ``` bash
-git clone [YOUR_REPOSITORY_URL]
+git clone https://github.com/niuwa2333/DTVF.git
 ```
 
 ### Navigate to the Project Directory:
