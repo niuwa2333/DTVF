@@ -13,13 +13,19 @@ User-Friendly: Designed to be accessible with minimal setup required.
 To get started with our virulence factor prediction tool, you'll need a PC equipped with a GPU and Python installed. Follow these simple steps:
 
 ### Clone the Repository:
-''' git clone [YOUR_REPOSITORY_URL] '''
+``` bash
+git clone [YOUR_REPOSITORY_URL]
+```
 
 ### Navigate to the Project Directory:
-''' cd [YOUR_PROJECT_DIRECTORY] '''
+''' bash
+cd DTVF
+'''
 
 ### Run the UI Script:
-''' python run.py '''
+''' bash
+python run.py 
+'''
 
 ## Data
 We've included the training and testing datasets in the repository, pre-processed as .h5 format embeddings, to facilitate easy access and usage.
