@@ -18,14 +18,14 @@ git clone https://github.com/niuwa2333/DTVF.git
 ```
 
 ### Navigate to the Project Directory:
-''' bash
+``` bash
 cd DTVF
-'''
+```
 
 ### Run the UI Script:
-''' bash
+``` bash
 python run.py 
-'''
+```
 
 ## Data
 We've included the training and testing datasets in the repository, pre-processed as .h5 format embeddings, to facilitate easy access and usage.
