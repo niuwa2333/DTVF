@@ -34,6 +34,7 @@ We've included the training and testing datasets in the repository, pre-processe
 
 ### Feature Extraction with ProtT5
 We understand the importance of an intuitive workflow, especially when dealing with complex models like ProtT5. To this end, we've included a user-friendly Jupyter Notebook in our repository, get_embeddings.ipynb, which guides you through the process of extracting features from protein sequences using the ProtT5 model. These features are crucial for the operation of our virulence factor prediction tool.
+We suggest using [Colab notebook](https://colab.research.google.com/drive/1TUj-ayG3WO52n5N50S7KH9vtt6zRkdmj?usp=sharing) by ProtT5 authors
 ### Getting Started with get_embeddings.ipynb
 1. Access the Notebook: Ensure you have Jupyter Notebook installed on your system. You can install it via pip if you haven't already:
 ``` bash
