@@ -85,51 +85,44 @@ def load_embeddings_from_h5(file_path):
         for key in file.keys():
             embedding = file[key][()]
             if len(embedding.shape) == 1:
-                embedding = embedding.reshape(1, 1, -1)  # 将一维张量转换为三维张量
+                embedding = embedding.reshape(1, 1, -1) 
             elif len(embedding.shape) == 2:
-                embedding = embedding.reshape(1, *embedding.shape)  # 将二维张量转换为三维张量
+                embedding = embedding.reshape(1, *embedding.shape) 
             elif len(embedding.shape) != 3:
                 raise ValueError("The embedding must be a 1D, 2D, or 3D tensor.")
             embeddings.append(embedding)
     return embeddings
 
 def predict_vf(file_obj):
-    # 从上传的文件中加载所有embedding
     embeddings = load_embeddings_from_h5(file_obj.name)
 
-    # 将所有embedding转换为PyTorch张量
+
     input_tensors = [torch.tensor(embedding, dtype=torch.float32).to(device) for embedding in embeddings]
 
     probabilities = []
     with torch.no_grad():
         for input_tensor in input_tensors:
             output = model(input_tensor)
-            probability = torch.sigmoid(output)[0][1].item()  # 应用 sigmoid 函数并获取正类的概率
+            probability = torch.sigmoid(output)[0][1].item()  
             probabilities.append(probability)
 
-    # 统计正负样本数量和比例
     positive_count = sum(1 for prob in probabilities if prob >= 0.5)
     negative_count = len(probabilities) - positive_count
     total_count = len(probabilities)
     positive_ratio = positive_count / total_count
     negative_ratio = negative_count / total_count
 
-    # 使用plotly生成饼状图
     labels = ['Positive', 'Negative']
     values = [positive_ratio, negative_ratio]
     fig = px.pie(names=labels, values=values, title='Positive vs Negative Predictions')
 
     return probabilities, fig
 
-# 创建Gradio界面
 iface = gr.Interface(
-    fn=predict_vf,  # 你的模型函数
-    inputs=gr.components.File(label="Upload .h5 file containing the embeddings"),  # 输入组件类型
-    outputs=[gr.components.Textbox(label="Predicted Probabilities"), gr.components.Plot(label="Pie Chart")],  # 输出组件类型
-    title="VF Prediction Model",  # 页面标题
+    fn=predict_vf,  
+    inputs=gr.components.File(label="Upload .h5 file containing the embeddings"),
+    outputs=[gr.components.Textbox(label="Predicted Probabilities"), gr.components.Plot(label="Pie Chart")], 
+    title="VF Prediction Model",
     description="Upload an .h5 file containing the embeddings to get the probabilities of them being VF (Virulence Factor) and a pie chart showing the distribution of positive and negative predictions."
-    # 页面描述
 )
-
-# 启动界面
 iface.launch(share=False, inbrowser=True)
