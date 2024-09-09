@@ -62,3 +62,18 @@ We would like to express our gratitude to the following projects and their contr
 
 [Gradio](https://github.com/gradio-app/gradio)
 
+
+## Citation
+
+``` bibtex
+@article{sun2024dtvf,
+  title={DTVF: A User-Friendly Tool for Virulence Factor Prediction Based on ProtT5 and Deep Transfer Learning Models},
+  author={Sun, Jiawei and Yin, Hongbo and Ju, Chenxiao and Wang, Yongheng and Yang, Zhiyuan},
+  journal={Genes},
+  volume={15},
+  number={9},
+  pages={1170},
+  year={2024},
+  publisher={MDPI}
+}
+```
